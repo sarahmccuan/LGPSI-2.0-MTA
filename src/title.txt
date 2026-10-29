@@ -1,0 +1,9 @@
+---
+title: Ἡ Ἑλληνικὴ γλῶσσα καθ' αὑτὴν φωτιζομένη
+creator:
+  - role: author
+    text: Seumas MacDonald
+author:
+  - Seumas MacDonald
+lang: grc
+...
