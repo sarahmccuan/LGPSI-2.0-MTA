@@ -1,0 +1,51 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      # Drop chapter pages left over from the original LGPSI so the site
+      # only contains chapters that have a source file in src/.
+      - name: Remove stale chapter pages
+        run: rm -f docs/[0-9]*.html
+
+      - name: Build HTML
+        run: bash scripts/html.sh
+
+      - name: Build EPUB
+        run: bash scripts/ebook.sh
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
