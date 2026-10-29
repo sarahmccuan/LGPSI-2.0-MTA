@@ -2,6 +2,8 @@
 
 LGPSI: An open, expansive Greek-reading composition project
 
+Base Text available under a Creative Commons BY-NC-SA 4.0.
+
 ## Build an epub file
 
 This requires [pandoc][1].
