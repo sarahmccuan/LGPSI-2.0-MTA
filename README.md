@@ -1,4 +1,4 @@
-# Linguae Graecae Per Se Illustrata
+# Lingua Graeca Per Se Illustrata 2.0 : μῦθος τῆς Ἀντιοχείᾱς 
 
 LGPSI: An open, expansive Greek-reading composition project
 
